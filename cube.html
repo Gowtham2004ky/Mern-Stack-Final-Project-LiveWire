@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MERN Cube</title>
+    <style>
+      :root {
+        --cube-width: 150px;
+        --translateZ: 75px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero {
+        width: 90%;
+        height: 90vh;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .cube-container {
+        perspective: 1000px;
+      }
+
+      .cube {
+        width: var(--cube-width);
+        height: var(--cube-width);
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out;
+      }
+
+      .cube-face {
+        width: var(--cube-width);
+        height: var(--cube-width);
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background: #333;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .front   { background: #d63946; transform: translateZ(var(--translateZ)); }
+      .back    { background: #06d6a0; transform: rotateY(180deg) translateZ(var(--translateZ)); }
+      .left    { background: #023047; transform: rotateY(-90deg) translateZ(var(--translateZ)); }
+      .right   { background: #3d348b; transform: rotateY(90deg) translateZ(var(--translateZ)); }
+      .top     { background: #a8dadc; transform: rotateX(90deg) translateZ(var(--translateZ)); }
+      .bottom  { background: #ffd166; color: black; transform: rotateX(-90deg) translateZ(var(--translateZ)); }
+
+      /* Optional cube heading */
+      .title {
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        width: 100%;
+        color: #222;
+        font-size: 24px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="title">MERN STACK PROJECT</div>
+      <div class="cube-container">
+        <div class="cube">
+          <div class="cube-face front">MONGO DB</div>
+          <div class="cube-face back">EXPRESS JS</div>
+          <div class="cube-face left">REACT JS</div>
+          <div class="cube-face right">NODE JS</div>
+          <div class="cube-face top">JAVASCRIPT</div>
+          <div class="cube-face bottom">GOWTHAMAN</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const cube = document.querySelector(".cube");
+      window.addEventListener("mousemove", (event) => {
+        const rotationValue = 270;
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+        const rotateX = -(mouseY / window.innerHeight - 0.5) * rotationValue;
+        const rotateY = (mouseX / window.innerWidth - 0.5) * rotationValue;
+        cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+    </script>
+  </body>
+</html>
