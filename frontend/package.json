@@ -3,12 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+  "homepage": "https://gowtham2004ky.github.io/Mern-Stack-Final-Project-LiveWire",
+"scripts": {
   "dev": "vite",
   "build": "vite build",
   "preview": "vite preview",
-  "deploy": "vite build && gh-pages -d dist"
-},
+  "deploy": "npm run build && gh-pages -d dist"
+}
+,
   "dependencies": {
     "axios": "^1.6.5",
     "react": "^18.2.0",
